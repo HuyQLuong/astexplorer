@@ -21,6 +21,7 @@ export default {
     },
 
     async parse(axios, code) {
+        // const response = await axios.post("https://code-parser-int.quod.ai/parse", this.getRequestBody(code))
         const response = await axios.post("/parse", this.getRequestBody(code))
         try{
             let firstResponse = response.data["responses"][0];
@@ -54,6 +55,8 @@ export default {
     },
 
     nodeToRange(node) {
+        let {startIndex, endIndex} = node;
+        if (startIndex === undefined) return;
         return [node.startIndex, node.endIndex + 1];
     }
 };
