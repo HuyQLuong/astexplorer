@@ -9,6 +9,7 @@ export const parserSettingsConfiguration = {
 export default {
   ...AntlrParser,
   language: "rb",
-  id: "antlr-parser-ruby",
-  displayName: "antlr-parser-ruby"
+  parserName: "ruby",
+  id: "antlr-ruby",
+  displayName: "antlr-ruby"
 }

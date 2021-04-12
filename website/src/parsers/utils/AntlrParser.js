@@ -11,6 +11,7 @@ export default {
     displayName : ID,
     version : 1.0,
     homepage : "",
+    parserName: null, 
 
     locationProps : new Set(['startIndex','endIndex','startLineNumber','startColNumber','endLineNumber','endColNumber']),
     typeProps : new Set(['ruleName']),
@@ -21,8 +22,9 @@ export default {
     },
 
     async parse(axios, code) {
-        const response = await axios.post("https://code-parser-int.quod.ai/parse", this.getRequestBody(code))
-        // const response = await axios.post("/parse", this.getRequestBody(code))
+        // const response = await axios.post("https://code-parser-int.quod.ai/parse", this.getRequestBody(code))
+        const response = await axios.post("/parse", this.getRequestBody(code))
+        // const response = await axios.post("http://localhost:50051/parse", this.getRequestBody(code))
         try{
             let firstResponse = response.data["responses"][0];
             if(firstResponse["statusCode"] !== 500)
@@ -39,7 +41,8 @@ export default {
             "codeFiles": [
                 {
                     "code":code,
-                    "language": this.language
+                    "language": this.language,
+                    "parserName": this.parserName
                 }
             ]
         }
