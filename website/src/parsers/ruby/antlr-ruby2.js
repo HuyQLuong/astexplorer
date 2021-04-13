@@ -8,8 +8,7 @@ export const parserSettingsConfiguration = {
 
 export default {
   ...AntlrParser,
-  language: "rb",
-  parserName: "jruby",
-  id: "antlr-jruby",
-  displayName: "antlr-jruby"
+  language: "rb2",
+  id: "antlr-ruby2",
+  displayName: "antlr-ruby2"
 }

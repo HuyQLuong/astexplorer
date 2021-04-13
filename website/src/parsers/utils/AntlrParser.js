@@ -11,7 +11,6 @@ export default {
     displayName : ID,
     version : 1.0,
     homepage : "",
-    parserName: null, 
 
     locationProps : new Set(['startIndex','endIndex','startLineNumber','startColNumber','endLineNumber','endColNumber']),
     typeProps : new Set(['ruleName']),
@@ -41,8 +40,7 @@ export default {
             "codeFiles": [
                 {
                     "code":code,
-                    "language": this.language,
-                    "parserName": this.parserName
+                    "language": this.language
                 }
             ]
         }
