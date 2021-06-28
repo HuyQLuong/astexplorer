@@ -16,13 +16,14 @@ module.exports = {
         __dirname: false,   // if you don't put this is, __dirname
         __filename: false,  // and __filename return blank or /
     },
-    externals: [nodeExternals()], // Need this to avoid error when working with Express
+    // externals: [nodeExternals()], // Need this to avoid error when working with Express
     module: {
         noParse: [
             /traceur\/bin/,
             /typescript\/lib/,
             /esprima\/dist\/esprima\.js/,
             /esprima-fb\/esprima\.js/,
+            /glsl/,
             // This is necessary because flow is trying to load the 'fs' module, but
             // dynamically. Without this webpack will throw an error at runtime.
             // I assume the `require(...)` call "succeeds" because 'fs' is shimmed to
@@ -74,7 +75,12 @@ module.exports = {
                     path.join(__dirname, 'node_modules', 'tslint'),
                     path.join(__dirname, 'node_modules', 'tslib'),
                     path.join(__dirname, 'node_modules', 'svelte'),
-                    path.join(__dirname, 'src'),
+                    // path.join(__dirname, 'src'),
+                    /src\/server.js/,
+                    /src\/parsers/,
+                ],
+                exclude:[
+                    /src\/parsers\/glsl/,
                 ],
                 loader: 'babel-loader',
                 options: {
