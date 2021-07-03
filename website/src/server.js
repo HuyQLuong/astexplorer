@@ -2,6 +2,9 @@
 import {getParserByID} from './parsers';
 
 import express from 'express';
+import browserEnv from 'browser-env';
+browserEnv();
+
 const app = express()
 const port = 3300
 
