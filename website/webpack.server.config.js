@@ -115,7 +115,7 @@ module.exports = {
                 ],
                 loader: 'babel-loader',
                 options: {
-                    babelrc: false,
+                    babelrc: true,
                     presets: [
                         [
                             require.resolve('@babel/preset-env'),
