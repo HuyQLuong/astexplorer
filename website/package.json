@@ -62,7 +62,7 @@
     "acorn-to-esprima": "^2.0.8",
     "astexplorer-go": "^1.0.0",
     "astexplorer-refmt": "^1.0.1",
-    "astexplorer-syn": "^1.0.48",
+    "astexplorer-syn": "^1.0.57",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.3",
     "babel-eslint8": "npm:babel-eslint@^8",
@@ -78,6 +78,7 @@
     "babylon6": "npm:babylon@^6",
     "babylon7": "npm:@babel/parser@^7",
     "browser-env": "^3.3.0",
+    "canvas": "^2.8.0",
     "cherow": "^1.6.8",
     "codemirror": "^5.22.0",
     "codemirror-graphql": "^0.11.6",
@@ -175,11 +176,12 @@
   "scripts": {
     "start": "serve -l 8080 ../out",
     "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack --mode=production",
-    "server-build": "rm -rf ./dist && webpack --mode development --config webpack.server.config.js",
+    "server-build": "rm -rf ./dist && npm run cp-cm && webpack --mode development --config webpack.server.config.js",
     "server-start": "node ./dist/server.js",
     "build-dev": "rimraf ../out/* && cross-env NODE_ENV=development webpack -d --mode=development",
     "watch": "webpack -dw --mode=development",
     "lint": "node_modules/eslint/bin/eslint.js src/",
-    "fontcustom": "fontcustom compile ./fontcustom/input-svg/ --config=./fontcustom/config.yml"
+    "fontcustom": "fontcustom compile ./fontcustom/input-svg/ --config=./fontcustom/config.yml",
+    "cp-cm": "cp libConfig/codemirror.js node_modules/codemirror/lib"
   }
 }
