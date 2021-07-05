@@ -1,7 +1,24 @@
 const path = require('path')
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const DEV = process.env.NODE_ENV !== 'production';
+
 module.exports = {
+    plugins:[
+      new webpack.NormalModuleReplacementPlugin(
+        /\.\.\/data/,
+        module => {
+          if (/css-tree/.test(module.context)) {
+            module.request += '/index.js';
+          }
+        }
+      ),
+      new MiniCssExtractPlugin({
+        filename: DEV ? '[name].css' : `[name]-[contenthash]-${CACHE_BREAKER}.css`,
+        allChunks: true,
+      }),
+    ],
     entry: {
         server: './src/server.js',
     },
@@ -23,7 +40,7 @@ module.exports = {
             /typescript\/lib/,
             /esprima\/dist\/esprima\.js/,
             /esprima-fb\/esprima\.js/,
-            /glsl/,
+            // /glsl/,
             // This is necessary because flow is trying to load the 'fs' module, but
             // dynamically. Without this webpack will throw an error at runtime.
             // I assume the `require(...)` call "succeeds" because 'fs' is shimmed to
@@ -31,6 +48,15 @@ module.exports = {
             /flow-parser\/flow_parser\.js/,
         ],
         rules: [
+          {
+            test: /\.txt$/,
+            exclude: /node_modules/,
+            loader: 'raw-loader',
+          },
+          {
+            test: /\.(sass|less|css)$/,
+            loaders: ['style-loader', 'css-loader', 'less-loader']
+          },
             {
                 test: /\.(jsx?|mjs)$/,
                 type: 'javascript/auto',
@@ -80,7 +106,7 @@ module.exports = {
                     /src\/parsers/,
                 ],
                 exclude:[
-                    /src\/parsers\/glsl/,
+                    // /src\/parsers\/glsl/,
                 ],
                 loader: 'babel-loader',
                 options: {

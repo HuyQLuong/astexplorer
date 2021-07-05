@@ -77,6 +77,7 @@
     "babylon5": "npm:babylon@^5",
     "babylon6": "npm:babylon@^6",
     "babylon7": "npm:@babel/parser@^7",
+    "browser-env": "^3.3.0",
     "cherow": "^1.6.8",
     "codemirror": "^5.22.0",
     "codemirror-graphql": "^0.11.6",
@@ -174,7 +175,7 @@
   "scripts": {
     "start": "serve -l 8080 ../out",
     "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack --mode=production",
-    "server-build": "rm -rf dist && webpack --mode development --config webpack.server.config.js",
+    "server-build": "rm -rf ./dist && webpack --mode development --config webpack.server.config.js",
     "server-start": "node ./dist/server.js",
     "build-dev": "rimraf ../out/* && cross-env NODE_ENV=development webpack -d --mode=development",
     "watch": "webpack -dw --mode=development",
