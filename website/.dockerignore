@@ -4,3 +4,4 @@
 # Allow files and directories
 !/dist/**
 !/package.json
+!/yarn.lock
