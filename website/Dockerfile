@@ -3,5 +3,6 @@ FROM node:14
 WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
 RUN yarn install --pure-lockfile
-ADD dist dist/
+COPY . ./
+RUN yarn run server-build
 CMD ["node","dist/server.js"]
