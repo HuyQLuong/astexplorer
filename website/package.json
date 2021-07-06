@@ -12,7 +12,7 @@
     "@babel/core": "~7.12.0",
     "@babel/plugin-transform-runtime": "^7.12.0",
     "@babel/preset-env": "^7.12.0",
-    "@babel/preset-react": "^7.12.0",
+    "@babel/preset-react": "^7.14.5",
     "autoprefixer": "^9.7.6",
     "babel-loader": "^8.0.4",
     "cross-env": "^7.0.2",
@@ -29,6 +29,7 @@
     "js-yaml": "^3.13.1",
     "json-loader": "^0.5.3",
     "mini-css-extract-plugin": "^0.9.0",
+    "node-loader": "^2.0.0",
     "null-loader": "^4.0.0",
     "postcss-loader": "^3.0.0",
     "raw-loader": "^4.0.0",
@@ -44,6 +45,7 @@
     "@angular-eslint/template-parser": "^1.0.0",
     "@angular/compiler": "^11.2.0",
     "@babel/eslint-parser": "^7.12.0",
+    "@babel/plugin-syntax-jsx": "^7.14.5",
     "@babel/runtime": "^7.12.0",
     "@creditkarma/thrift-parser": "^1.2.0",
     "@gengjiawen/monkey-wasm": "^0.5.0",
@@ -76,6 +78,9 @@
     "babylon5": "npm:babylon@^5",
     "babylon6": "npm:babylon@^6",
     "babylon7": "npm:@babel/parser@^7",
+    "body-parser": "^1.19.0",
+    "browser-env": "^3.3.0",
+    "canvas": "^2.8.0",
     "cherow": "^1.6.8",
     "codemirror": "^5.22.0",
     "codemirror-graphql": "^0.11.6",
@@ -92,6 +97,7 @@
     "eslint4": "npm:eslint@^4",
     "espree": "^6.2.1",
     "esprima": "^4.0.1",
+    "express": "^4.17.1",
     "filbert": "^0.1.20",
     "flow-parser": "^0.144.0",
     "font-awesome": "^4.5.0",
@@ -140,6 +146,7 @@
     "remark-frontmatter": "^3.0.0",
     "remark-gfm": "^1.0.0",
     "remark-math": "^4.0.0",
+    "requirejs": "^2.3.6",
     "san": "^3.9.4",
     "scalameta-parsers": "^4.4.17",
     "seafox": "^1.6.9",
@@ -162,6 +169,7 @@
     "vue-eslint-parser": "^7.6.0",
     "vue-template-compiler": "^2.6.9",
     "webidl2": "^23.5.1",
+    "webpack-node-externals": "^3.0.0",
     "worker-loader": "^2.0.0",
     "yaml": "^1.7.2",
     "yaml-ast-parser": "^0.0.43"
@@ -170,9 +178,12 @@
   "scripts": {
     "start": "serve -l 8080 ../out",
     "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack --mode=production",
+    "server-build": "rm -rf ./dist && npm run cp-cm && webpack --mode production --config webpack.server.config.js",
+    "server-start": "node ./dist/server.js",
     "build-dev": "rimraf ../out/* && cross-env NODE_ENV=development webpack -d --mode=development",
     "watch": "webpack -dw --mode=development",
     "lint": "node_modules/eslint/bin/eslint.js src/",
-    "fontcustom": "fontcustom compile ./fontcustom/input-svg/ --config=./fontcustom/config.yml"
+    "fontcustom": "fontcustom compile ./fontcustom/input-svg/ --config=./fontcustom/config.yml",
+    "cp-cm": "cp libConfig/codemirror.js node_modules/codemirror/lib"
   }
 }
