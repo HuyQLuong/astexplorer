@@ -16,7 +16,7 @@ echo "IMAGE=$IMAGE"
 DOCKER_FILE=${DOCKER_FILE:-"Dockerfile"}
 PUSH_IMAGE_ONLY=${PUSH_IMAGE_ONLY:-"false"}
 ARGUMENTS=${ARGUMENTS:-""}
-aws ecr describe-repositories --repository-names $REPOSITORY | jq || aws ecr create-repository --repository-name $REPOSITORY | jq
+aws ecr describe-repositories --repository-names $REPOSITORY || aws ecr create-repository --repository-name $REPOSITORY | jq
 if [ "$PUSH_IMAGE_ONLY" = "false" ]
 then
     docker build $ARGUMENTS -t $IMAGE -t $LATEST_IMAGE -f $DOCKER_FILE .
