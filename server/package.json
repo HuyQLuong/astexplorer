@@ -5,11 +5,25 @@
   "private": true,
   "author": "Felix Kling",
   "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
     "body-parser": "^1.15.2",
+    "dotenv": "^10.0.0",
     "express": "^4.14.0",
-    "github-api": "https://github.com/fkling/github.git"
+    "github-api": "https://github.com/fkling/github.git",
+    "rimraf": "^3.0.2"
   },
   "scripts": {
-    "start": "STATIC=../out node index.js"
+    "start": "STATIC=../out node ./src/index.js",
+    "build": "rimraf build/ && babel ./src --out-dir build/",
+    "deploy-local": "NODE_PATH=src babel-node --inspect src/index.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
 }
