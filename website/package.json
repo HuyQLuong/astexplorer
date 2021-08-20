@@ -177,13 +177,14 @@
   "browserslist": "> 0.25%, not dead",
   "scripts": {
     "start": "serve -l 8080 ../out",
-    "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack --mode=production",
     "server-build": "rm -rf ./dist && npm run cp-cm && webpack --mode development --config webpack.server.config.js",
     "server-start": "node ./dist/server.js",
-    "build-dev": "rimraf ../out/* && cross-env NODE_ENV=development webpack -d --mode=development",
+    "build": "rm -rf ../out && npm run cp-cm && npm run cp-ast && cross-env NODE_ENV=production && webpack --mode=production --config webpack.config.js",
+    "build-dev": "rimraf ../out && npm run cp-cm && cross-env NODE_ENV=development && webpack -d --mode=development --config webpack.config.js",
     "watch": "webpack -dw --mode=development",
     "lint": "node_modules/eslint/bin/eslint.js src/",
     "fontcustom": "fontcustom compile ./fontcustom/input-svg/ --config=./fontcustom/config.yml",
-    "cp-cm": "cp libConfig/codemirror.js node_modules/codemirror/lib"
+    "cp-cm": "cp libConfig/codemirror.js node_modules/codemirror/lib",
+    "cp-ast": "cp libConfig/astexplorer_syn.js node_modules/astexplorer-syn"
   }
 }
