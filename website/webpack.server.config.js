@@ -5,6 +5,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const DEV = process.env.NODE_ENV !== 'production';
 
 module.exports = {
+    optimization: {
+        minimize: false
+    },
     plugins:[
         new webpack.NormalModuleReplacementPlugin(
             /^go$/,

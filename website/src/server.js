@@ -38,7 +38,7 @@ app.post('/parse', async (req, res) => {
         const parser_name = request_object.parser_name;
         const parser_setting = request_object.parser_setting;
         const parser =  getParserByID(parser_name)
-        res.json(await parse(parser, snippet,parser_setting))
+        res.json({tree: await parse(parser, snippet,parser_setting)})
     }catch (e){
         console.error(e.stack)
         res.status(500).send(e)

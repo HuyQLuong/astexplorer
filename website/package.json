@@ -177,7 +177,7 @@
   "browserslist": "> 0.25%, not dead",
   "scripts": {
     "start": "serve -l 8080 ../out",
-    "server-build": "rm -rf ./dist && npm run cp-cm && webpack --mode development --config webpack.server.config.js",
+    "server-build": "rm -rf ./dist && npm run cp-cm && webpack --mode production --config webpack.server.config.js",
     "server-start": "node ./dist/server.js",
     "build": "rm -rf ../out && npm run cp-cm && npm run cp-ast && cross-env NODE_ENV=production && webpack --mode=production --config webpack.config.js",
     "build-dev": "rimraf ../out && npm run cp-cm && cross-env NODE_ENV=development && webpack -d --mode=development --config webpack.config.js",
